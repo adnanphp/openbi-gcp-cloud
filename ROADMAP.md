@@ -5,8 +5,8 @@ Sequential phases, each ending with a commit and a green CI run.
 - ✅ **G1 — VPC** (custom-mode VPC, subnet with secondary ranges, Cloud NAT, firewall rules, VPC Flow Logs)
 - ✅ **G2 — IAM foundation** (GKE node SA, workload identity template SA, least-privilege roles)
 - ✅ **G3 — Artifact Registry** (Docker repository with cleanup policy)
-- 📋 **G4 — GKE** (Autopilot or Standard cluster, node pools, Workload Identity enabled, add-ons) *(next)*
-- 📋 **G5 — Cloud Storage** (raw / processed / models buckets, lifecycle, uniform access)
+- ✅ **G4 — GKE** (Standard regional cluster, primary + spot node pools, Workload Identity, private nodes)
+- 📋 **G5 — Cloud Storage** (raw / processed / models buckets, lifecycle, uniform access) *(next)*
 - 📋 **G6 — Cloud SQL PostgreSQL** (private IP, IAM auth, backups, tuned flags)
 - 📋 **G7 — Pub/Sub** (topic + subscription + dead-letter topic)
 - 📋 **G8 — Load Balancing** (GKE Ingress, managed certificate)

@@ -77,3 +77,46 @@ module "artifact_registry" {
 
   labels = local.common_labels
 }
+
+# ----------------------------------------------------------------------
+# GKE
+# ----------------------------------------------------------------------
+
+module "gke" {
+  source = "../../modules/gke"
+
+  name_prefix = local.name_prefix
+  project_id  = var.project_id
+  region      = var.region
+
+  cluster_name       = "openbi-dev"
+  release_channel    = "REGULAR"
+  kubernetes_version = ""
+
+  network_id = module.vpc.network_id
+  subnet_id  = module.vpc.subnet_id
+
+  pods_secondary_range_name     = module.vpc.pods_secondary_range_name
+  services_secondary_range_name = module.vpc.services_secondary_range_name
+
+  node_service_account_email = module.iam.gke_nodes_sa_email
+
+  # Dev sizing: small VMs, spot pool scales from 0.
+  primary_machine_type = "e2-medium"
+  primary_min_nodes    = 1
+  primary_max_nodes    = 3
+  primary_disk_size_gb = 50
+
+  spot_machine_type = "e2-medium"
+  spot_min_nodes    = 0
+  spot_max_nodes    = 5
+  spot_disk_size_gb = 50
+
+  # Private endpoint only by default.
+  enable_private_endpoint = false
+
+  # No deletion protection in dev.
+  deletion_protection = false
+
+  labels = local.common_labels
+}

@@ -58,7 +58,8 @@ text
 - ✅ **G1** — VPC, subnet, Cloud NAT, firewall rules
 - ✅ **G2** — IAM: GKE node SA + workload identity template SA
 - ✅ **G3** — Artifact Registry (Docker repository with cleanup policy)
-- 📋 G4–G11 — planned
+- ✅ **G4** — GKE cluster with two node pools + Workload Identity
+- 📋 G5–G11 — planned
 
 See [ROADMAP.md](ROADMAP.md).
 

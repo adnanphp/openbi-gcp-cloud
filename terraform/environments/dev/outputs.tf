@@ -35,3 +35,23 @@ output "artifact_registry_url" {
   description = "Docker URL for the OpenBI Artifact Registry repository"
   value       = module.artifact_registry.repository_url
 }
+
+# ----------------------------------------------------------------------
+# GKE outputs
+# ----------------------------------------------------------------------
+
+output "gke_cluster_name" {
+  description = "GKE cluster name"
+  value       = module.gke.cluster_name
+}
+
+output "gke_cluster_endpoint" {
+  description = "GKE cluster API endpoint"
+  value       = module.gke.cluster_endpoint
+  sensitive   = true
+}
+
+output "gke_workload_identity_pool" {
+  description = "Workload Identity pool identifier"
+  value       = module.gke.workload_identity_pool
+}
