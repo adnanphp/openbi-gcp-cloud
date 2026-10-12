@@ -1,0 +1,93 @@
+# OpenBI FastAPI service on GKE.
+#
+# Two containers:
+#   - cloud-sql-proxy (sidecar) — connects to Cloud SQL via IAM
+#   - fastapi (main) — connects to 127.0.0.1:5432 (through the sidecar)
+#
+# This is the standard GKE pattern for Cloud SQL access.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi
+  labels:
+    app: fastapi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fastapi
+  template:
+    metadata:
+      labels:
+        app: fastapi
+    spec:
+      serviceAccountName: fastapi
+      containers:
+        # ------------------------------------------------------------------
+        # Sidecar: Cloud SQL Auth Proxy
+        # ------------------------------------------------------------------
+        - name: cloud-sql-proxy
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.11.4
+          args:
+            - "--structured-logs"
+            - "--port=5432"
+            - "--auto-iam-authn"
+            - "$(CLOUD_SQL_CONNECTION_NAME)"
+          env:
+            - name: CLOUD_SQL_CONNECTION_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: openbi-db-credentials
+                  key: instance
+          securityContext:
+            runAsNonRoot: true
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+
+        # ------------------------------------------------------------------
+        # Main: FastAPI
+        # ------------------------------------------------------------------
+        - name: fastapi
+          image: REPLACE-WITH-ARTIFACT-REGISTRY-URL/openbi:fastapi-latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: openbi-config
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: openbi-db-credentials
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: openbi-db-credentials
+                  key: password
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi

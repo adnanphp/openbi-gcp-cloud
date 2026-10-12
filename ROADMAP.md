@@ -11,6 +11,6 @@ Sequential phases, each ending with a commit and a green CI run.
 - ✅ **G7 — Pub/Sub** (topic + subscription + dead-letter topic)
 - ✅ **G8 — Load Balancing** (static IP reservation, managed certificate examples)
 - ✅ **G9 — Cloud Logging + Monitoring + Secret Manager** (log sink, log-based metrics, dashboard, three alerts, ESO Workload Identity)
-- 📋 **G10 — Kubernetes manifests** (OpenBI workloads adapted for GKE) *(next)*
-- 📋 **G11 — Deployment scripts + docs**
+- ✅ **G10 — Kubernetes manifests** (FastAPI, Superset, Cloud SQL proxy sidecar, Kustomize base+overlay)
+- 📋 **G11 — Deployment scripts + docs** *(next)*
 - 📋 **G12 — Optional live validation**

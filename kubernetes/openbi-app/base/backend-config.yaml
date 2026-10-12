@@ -1,0 +1,19 @@
+# BackendConfig for the load balancer health checks.
+# Referenced from the FastAPI Service and Ingress.
+
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: openbi-backend-config
+spec:
+  healthCheck:
+    checkIntervalSec: 15
+    timeoutSec: 5
+    healthyThreshold: 1
+    unhealthyThreshold: 3
+    type: HTTP
+    requestPath: /health
+    port: 8000
+  connectionDraining:
+    drainingTimeoutSec: 60
+  timeoutSec: 30

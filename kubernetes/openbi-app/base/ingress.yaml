@@ -1,0 +1,45 @@
+# GKE Ingress — provisions a Cloud Load Balancer.
+#
+# Both Ingresses use the same reserved static IP from the
+# load-balancing module (via the annotation).
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: openbi-api
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: openbi-dev-lb-ip
+    cloud.google.com/backend-config: '{"default": "openbi-backend-config"}'
+spec:
+  ingressClassName: gce
+  rules:
+    - host: api.openbi.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: fastapi
+                port:
+                  number: 8000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: openbi-superset
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: openbi-dev-lb-ip
+spec:
+  ingressClassName: gce
+  rules:
+    - host: superset.openbi.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: superset
+                port:
+                  number: 8088

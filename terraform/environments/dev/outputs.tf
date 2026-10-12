@@ -153,3 +153,12 @@ output "eso_service_account_email" {
   description = "GSA email for External Secrets Operator"
   value       = module.secrets.eso_service_account_email
 }
+
+# ----------------------------------------------------------------------
+# Workload Identity outputs
+# ----------------------------------------------------------------------
+
+output "fastapi_gsa_email" {
+  description = "GSA email for the FastAPI pod"
+  value       = module.workload_identity.fastapi_sa_email
+}

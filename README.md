@@ -64,7 +64,8 @@ text
 - ✅ **G7** — Pub/Sub (topic + subscription + DLQ)
 - ✅ **G8** — Load Balancing (reserved static IP, managed cert examples)
 - ✅ **G9** — Logging, Monitoring, Secret Manager
-- 📋 G10–G11 — planned
+- ✅ **G10** — Kubernetes manifests (FastAPI, Superset, Cloud SQL proxy sidecar)
+- 📋 G11 — planned
 
 See [ROADMAP.md](ROADMAP.md).
 

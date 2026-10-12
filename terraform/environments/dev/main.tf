@@ -263,3 +263,19 @@ module "secrets" {
 
   secret_path_prefix = "openbi/dev"
 }
+
+# ----------------------------------------------------------------------
+# Workload Identity for FastAPI
+# ----------------------------------------------------------------------
+
+module "workload_identity" {
+  source = "../../modules/workload-identity"
+
+  name_prefix = local.name_prefix
+  project_id  = var.project_id
+
+  kubernetes_namespace       = "openbi"
+  kubernetes_service_account = "fastapi"
+
+  storage_bucket_prefix = "openbi-"
+}

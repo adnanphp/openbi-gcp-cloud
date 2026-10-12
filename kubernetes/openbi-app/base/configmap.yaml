@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openbi-config
+data:
+  GOOGLE_CLOUD_PROJECT: "REPLACE-WITH-PROJECT-ID"
+  GCS_RAW_BUCKET: "openbi-raw-REPLACE"
+  GCS_PROCESSED_BUCKET: "openbi-processed-REPLACE"
+  GCS_MODELS_BUCKET: "openbi-models-REPLACE"
+  PUBSUB_TOPIC: "openbi-events-REPLACE"
+  PUBSUB_SUBSCRIPTION: "openbi-events-sub-REPLACE"
+  DB_HOST: "127.0.0.1"
+  DB_PORT: "5432"
+  DB_NAME: "openbi"
+  LOG_LEVEL: "INFO"
