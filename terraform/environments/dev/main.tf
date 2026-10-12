@@ -62,3 +62,18 @@ module "iam" {
   name_prefix = local.name_prefix
   project_id  = var.project_id
 }
+
+# ----------------------------------------------------------------------
+# Artifact Registry
+# ----------------------------------------------------------------------
+
+module "artifact_registry" {
+  source = "../../modules/artifact-registry"
+
+  name_prefix   = local.name_prefix
+  project_id    = var.project_id
+  region        = var.region
+  repository_id = "openbi"
+
+  labels = local.common_labels
+}

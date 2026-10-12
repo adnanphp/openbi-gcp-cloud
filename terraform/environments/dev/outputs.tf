@@ -26,3 +26,12 @@ output "workload_template_sa_email" {
   description = "Base workload identity service account email"
   value       = module.iam.workload_template_sa_email
 }
+
+# ----------------------------------------------------------------------
+# Artifact Registry outputs
+# ----------------------------------------------------------------------
+
+output "artifact_registry_url" {
+  description = "Docker URL for the OpenBI Artifact Registry repository"
+  value       = module.artifact_registry.repository_url
+}
