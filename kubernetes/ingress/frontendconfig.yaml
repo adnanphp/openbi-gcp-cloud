@@ -1,0 +1,14 @@
+# FrontendConfig — configures the load balancer frontend.
+#
+# Currently: force HTTPS by redirecting all HTTP traffic.
+# Only meaningful when a certificate exists.
+
+apiVersion: networking.gke.io/v1beta1
+kind: FrontendConfig
+metadata:
+  name: openbi-frontend-config
+  namespace: openbi
+spec:
+  redirectToHttps:
+    enabled: true
+    responseCodeName: MOVED_PERMANENTLY_DEFAULT

@@ -62,7 +62,8 @@ text
 - ✅ **G5** — Cloud Storage (raw, processed, models buckets)
 - ✅ **G6** — Cloud SQL PostgreSQL (private IP, IAM auth, backups)
 - ✅ **G7** — Pub/Sub (topic + subscription + DLQ)
-- 📋 G8–G11 — planned
+- ✅ **G8** — Load Balancing (reserved static IP, managed cert examples)
+- 📋 G9–G11 — planned
 
 See [ROADMAP.md](ROADMAP.md).
 

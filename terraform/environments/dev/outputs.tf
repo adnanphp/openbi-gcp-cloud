@@ -112,3 +112,17 @@ output "pubsub_dlq_topic" {
   description = "Dead-letter topic name"
   value       = module.pubsub.dlq_topic_name
 }
+
+# ----------------------------------------------------------------------
+# Load Balancing outputs
+# ----------------------------------------------------------------------
+
+output "lb_external_ip" {
+  description = "Reserved external IP for the load balancer"
+  value       = module.load_balancing.external_ip_address
+}
+
+output "lb_external_ip_name" {
+  description = "Name of the reserved external IP"
+  value       = module.load_balancing.external_ip_name
+}

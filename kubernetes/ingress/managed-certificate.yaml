@@ -1,0 +1,16 @@
+# ManagedCertificate — Google-managed TLS certificate.
+#
+# Requires a domain you control. The certificate is provisioned by
+# Google and requires DNS pointing at the load balancer's IP address.
+#
+# This example is a reference; replace the domain with your own.
+
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: openbi-dev-cert
+  namespace: openbi
+spec:
+  domains:
+    - api.openbi.example.com
+    - superset.openbi.example.com

@@ -186,3 +186,27 @@ module "pubsub" {
 
   labels = local.common_labels
 }
+
+# ----------------------------------------------------------------------
+# Load Balancing
+# ----------------------------------------------------------------------
+
+module "load_balancing" {
+  source = "../../modules/load-balancing"
+
+  name_prefix = local.name_prefix
+  project_id  = var.project_id
+  region      = var.region
+
+  # Reserve an external static IP for the LB.
+  reserve_external_ip = true
+  external_ip_name    = "openbi-dev-lb-ip"
+
+  # Internal LB is optional; disabled by default.
+  reserve_internal_ip = false
+
+  # Managed certificate — empty for HTTP-only (lab default).
+  domain_name = ""
+
+  labels = local.common_labels
+}
