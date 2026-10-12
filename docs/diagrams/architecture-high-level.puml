@@ -1,0 +1,85 @@
+@startuml OpenBI-GCP-Architecture-High-Level
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Helvetica"
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam rectangle {
+  BackgroundColor #F8F9FA
+  BorderColor #1A73E8
+  RoundCorner 8
+}
+skinparam component {
+  BackgroundColor #FFFFFF
+  BorderColor #1A73E8
+}
+skinparam arrow {
+  Color #202124
+  Thickness 1.5
+}
+
+title OpenBI on GCP — High-Level Architecture\n<size:11>Data platform + BI + API, deployed on managed GCP services</size>
+
+' ============ User ============
+actor "User\n(Browser / CLI)" as user #E8F5E9
+
+' ============ Edge ============
+rectangle "Google Cloud Edge" as edge #FFF3E0 {
+  component "Cloud Load Balancing\n(global external IP reserved)" as lb
+}
+
+' ============ Compute ============
+rectangle "Google Kubernetes Engine — Regional Cluster" as gke #E3F2FD {
+  component "FastAPI\n(2 replicas + Cloud SQL proxy sidecar)" as fastapi
+  component "Superset\n(1 replica + Cloud SQL proxy sidecar)" as superset
+  component "Primary node pool\n(e2-medium, critical workloads)" as primary
+  component "Spot node pool\n(e2-medium, user workloads)" as spot
+}
+
+' ============ Managed services ============
+rectangle "GCP Managed Data Services" as data #F3E5F5 {
+  component "Cloud SQL\n(PostgreSQL 16, private IP)" as cloudsql
+  component "Cloud Storage\n(raw / processed / models)" as gcs
+  component "Pub/Sub\n(topic + subscription + DLQ)" as pubsub
+}
+
+' ============ Operations ============
+rectangle "Observability & Identity" as ops #FCE4EC {
+  component "Cloud Logging\n+ Cloud Monitoring" as logs
+  component "Secret Manager" as secrets
+  component "IAM + Workload Identity" as iam
+}
+
+' ============ Container registry ============
+rectangle "Container Registry" as reg #ECEFF1 {
+  component "Artifact Registry\n(Docker, openbi repo)" as ar
+}
+
+' ============ Flows ============
+user --> lb : HTTPS
+lb --> fastapi : HTTP
+lb --> superset : HTTP
+
+fastapi --> cloudsql : SQL (via sidecar)
+fastapi --> gcs : Cloud Storage API
+fastapi --> pubsub : publish / subscribe
+superset --> cloudsql : SQL (via sidecar)
+
+gke --> iam : Workload Identity
+gke --> ar : pull images
+gke --> logs : ship logs / metrics (automatic)
+
+cloudsql ..> secrets : credentials
+fastapi ..> secrets : via External Secrets Operator
+iam ..> gke : inject SA tokens
+
+' ============ Legend ============
+legend right
+  |<#FFF3E0>| Edge layer |
+  |<#E3F2FD>| Compute (GKE) |
+  |<#F3E5F5>| Data services |
+  |<#FCE4EC>| Observability & Identity |
+  |<#ECEFF1>| Container registry |
+endlegend
+
+@enduml
