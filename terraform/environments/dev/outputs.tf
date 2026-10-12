@@ -126,3 +126,30 @@ output "lb_external_ip_name" {
   description = "Name of the reserved external IP"
   value       = module.load_balancing.external_ip_name
 }
+
+# ----------------------------------------------------------------------
+# Logging outputs
+# ----------------------------------------------------------------------
+
+output "log_bucket_id" {
+  description = "OpenBI log bucket ID"
+  value       = module.logging.log_bucket_id
+}
+
+# ----------------------------------------------------------------------
+# Monitoring outputs
+# ----------------------------------------------------------------------
+
+output "monitoring_dashboard_id" {
+  description = "Cloud Monitoring dashboard ID"
+  value       = module.monitoring.dashboard_id
+}
+
+# ----------------------------------------------------------------------
+# Secrets outputs
+# ----------------------------------------------------------------------
+
+output "eso_service_account_email" {
+  description = "GSA email for External Secrets Operator"
+  value       = module.secrets.eso_service_account_email
+}

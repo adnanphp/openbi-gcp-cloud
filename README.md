@@ -63,7 +63,8 @@ text
 - ✅ **G6** — Cloud SQL PostgreSQL (private IP, IAM auth, backups)
 - ✅ **G7** — Pub/Sub (topic + subscription + DLQ)
 - ✅ **G8** — Load Balancing (reserved static IP, managed cert examples)
-- 📋 G9–G11 — planned
+- ✅ **G9** — Logging, Monitoring, Secret Manager
+- 📋 G10–G11 — planned
 
 See [ROADMAP.md](ROADMAP.md).
 

@@ -210,3 +210,56 @@ module "load_balancing" {
 
   labels = local.common_labels
 }
+
+# ----------------------------------------------------------------------
+# Cloud Logging
+# ----------------------------------------------------------------------
+
+module "logging" {
+  source = "../../modules/logging"
+
+  name_prefix = local.name_prefix
+  project_id  = var.project_id
+  location    = "global"
+
+  retention_days = 30
+
+  labels = local.common_labels
+}
+
+# ----------------------------------------------------------------------
+# Cloud Monitoring
+# ----------------------------------------------------------------------
+
+module "monitoring" {
+  source = "../../modules/monitoring"
+
+  name_prefix = local.name_prefix
+  project_id  = var.project_id
+  region      = var.region
+
+  # Set to a real email to receive alerts.
+  notification_email = ""
+
+  cloud_sql_instance_name = module.cloud_sql.instance_name
+  dlq_subscription_name   = "${module.pubsub.dlq_topic_name}-sub-${var.resource_suffix}"
+
+  # LB name is set once the LB exists (Phase G10).
+  lb_name = ""
+
+  sql_cpu_threshold = 80
+  lb_5xx_threshold  = 5
+}
+
+# ----------------------------------------------------------------------
+# Secrets (External Secrets Operator Workload Identity)
+# ----------------------------------------------------------------------
+
+module "secrets" {
+  source = "../../modules/secrets"
+
+  name_prefix = local.name_prefix
+  project_id  = var.project_id
+
+  secret_path_prefix = "openbi/dev"
+}

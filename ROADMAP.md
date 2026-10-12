@@ -10,7 +10,7 @@ Sequential phases, each ending with a commit and a green CI run.
 - ✅ **G6 — Cloud SQL PostgreSQL** (private IP, IAM auth, backups, tuned flags)
 - ✅ **G7 — Pub/Sub** (topic + subscription + dead-letter topic)
 - ✅ **G8 — Load Balancing** (static IP reservation, managed certificate examples)
-- 📋 **G9 — Cloud Logging + Monitoring + Secret Manager** *(next)*
-- 📋 **G10 — Kubernetes manifests** (OpenBI workloads adapted for GKE)
+- ✅ **G9 — Cloud Logging + Monitoring + Secret Manager** (log sink, log-based metrics, dashboard, three alerts, ESO Workload Identity)
+- 📋 **G10 — Kubernetes manifests** (OpenBI workloads adapted for GKE) *(next)*
 - 📋 **G11 — Deployment scripts + docs**
 - 📋 **G12 — Optional live validation**
