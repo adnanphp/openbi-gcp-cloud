@@ -65,7 +65,7 @@ text
 - ✅ **G8** — Load Balancing (reserved static IP, managed cert examples)
 - ✅ **G9** — Logging, Monitoring, Secret Manager
 - ✅ **G10** — Kubernetes manifests (FastAPI, Superset, Cloud SQL proxy sidecar)
-- 📋 G11 — planned
+- ✅ **G11** — Deployment scripts + troubleshooting docs
 
 See [ROADMAP.md](ROADMAP.md).
 
