@@ -3,8 +3,8 @@
 Sequential phases, each ending with a commit and a green CI run.
 
 - ✅ **G1 — VPC** (custom-mode VPC, subnet with secondary ranges, Cloud NAT, firewall rules, VPC Flow Logs)
-- 📋 **G2 — IAM foundation** (service accounts, Workload Identity pool/provider, GKE node SA, base workload SA)
-- 📋 **G3 — Artifact Registry** (Docker registry for OpenBI images)
+- ✅ **G2 — IAM foundation** (GKE node SA, workload identity template SA, least-privilege roles)
+- 📋 **G3 — Artifact Registry** (Docker registry for OpenBI images) *(next)*
 - 📋 **G4 — GKE** (Autopilot or Standard cluster, node pools, Workload Identity enabled, add-ons)
 - 📋 **G5 — Cloud Storage** (raw / processed / models buckets, lifecycle, uniform access)
 - 📋 **G6 — Cloud SQL PostgreSQL** (private IP, IAM auth, backups, tuned flags)

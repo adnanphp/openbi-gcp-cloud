@@ -56,7 +56,8 @@ text
 ## Status
 
 - ✅ **G1** — VPC, subnet, Cloud NAT, firewall rules
-- 📋 G2–G11 — planned
+- ✅ **G2** — IAM: GKE node SA + workload identity template SA
+- 📋 G3–G11 — planned
 
 See [ROADMAP.md](ROADMAP.md).
 
