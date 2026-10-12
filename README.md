@@ -60,7 +60,8 @@ text
 - ✅ **G3** — Artifact Registry (Docker repository with cleanup policy)
 - ✅ **G4** — GKE cluster with two node pools + Workload Identity
 - ✅ **G5** — Cloud Storage (raw, processed, models buckets)
-- 📋 G6–G11 — planned
+- ✅ **G6** — Cloud SQL PostgreSQL (private IP, IAM auth, backups)
+- 📋 G7–G11 — planned
 
 See [ROADMAP.md](ROADMAP.md).
 

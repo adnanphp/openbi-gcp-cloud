@@ -135,3 +135,34 @@ module "storage" {
 
   labels = local.common_labels
 }
+
+# ----------------------------------------------------------------------
+# Cloud SQL
+# ----------------------------------------------------------------------
+
+module "cloud_sql" {
+  source = "../../modules/cloud-sql"
+
+  name_prefix = local.name_prefix
+  project_id  = var.project_id
+  region      = var.region
+
+  instance_name     = "openbi-dev-pg"
+  database_version  = "POSTGRES_16"
+  tier              = "db-f1-micro"
+  disk_size_gb      = 20
+  availability_type = "ZONAL"
+
+  backup_retention_days = 7
+  deletion_protection   = false
+
+  database_name = "openbi"
+  database_user = "openbiadmin"
+
+  network_id        = module.vpc.network_id
+  network_self_link = module.vpc.network_name # Cloud SQL wants the self link or name; see output
+
+  create_private_service_access = true
+
+  labels = local.common_labels
+}

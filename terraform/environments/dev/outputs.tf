@@ -74,3 +74,22 @@ output "gcs_models_bucket" {
   description = "Name of the models bucket"
   value       = module.storage.models_bucket_name
 }
+
+# ----------------------------------------------------------------------
+# Cloud SQL outputs
+# ----------------------------------------------------------------------
+
+output "cloud_sql_instance_name" {
+  description = "Cloud SQL instance name"
+  value       = module.cloud_sql.instance_name
+}
+
+output "cloud_sql_connection_name" {
+  description = "Cloud SQL connection name (used by the Auth Proxy)"
+  value       = module.cloud_sql.instance_connection_name
+}
+
+output "cloud_sql_credentials_secret" {
+  description = "Secret Manager secret ID holding the credentials"
+  value       = module.cloud_sql.credentials_secret_id
+}
