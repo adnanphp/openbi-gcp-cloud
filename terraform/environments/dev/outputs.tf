@@ -55,3 +55,22 @@ output "gke_workload_identity_pool" {
   description = "Workload Identity pool identifier"
   value       = module.gke.workload_identity_pool
 }
+
+# ----------------------------------------------------------------------
+# Cloud Storage outputs
+# ----------------------------------------------------------------------
+
+output "gcs_raw_bucket" {
+  description = "Name of the raw data bucket"
+  value       = module.storage.raw_bucket_name
+}
+
+output "gcs_processed_bucket" {
+  description = "Name of the processed data bucket"
+  value       = module.storage.processed_bucket_name
+}
+
+output "gcs_models_bucket" {
+  description = "Name of the models bucket"
+  value       = module.storage.models_bucket_name
+}

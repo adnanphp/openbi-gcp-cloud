@@ -59,7 +59,8 @@ text
 - ✅ **G2** — IAM: GKE node SA + workload identity template SA
 - ✅ **G3** — Artifact Registry (Docker repository with cleanup policy)
 - ✅ **G4** — GKE cluster with two node pools + Workload Identity
-- 📋 G5–G11 — planned
+- ✅ **G5** — Cloud Storage (raw, processed, models buckets)
+- 📋 G6–G11 — planned
 
 See [ROADMAP.md](ROADMAP.md).
 

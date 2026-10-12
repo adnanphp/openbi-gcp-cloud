@@ -120,3 +120,18 @@ module "gke" {
 
   labels = local.common_labels
 }
+
+# ----------------------------------------------------------------------
+# Cloud Storage
+# ----------------------------------------------------------------------
+
+module "storage" {
+  source = "../../modules/storage"
+
+  name_prefix   = local.name_prefix
+  project_id    = var.project_id
+  region        = var.region
+  bucket_suffix = var.resource_suffix
+
+  labels = local.common_labels
+}

@@ -3,3 +3,6 @@
 
 project_id = "your-gcp-project-id"
 region     = "europe-west3"
+
+# Uncomment and set to your project ID for GCS bucket naming:
+# resource_suffix = "your-gcp-project-id"
