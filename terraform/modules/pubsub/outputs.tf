@@ -1,0 +1,29 @@
+output "main_topic_name" {
+  description = "Name of the main topic"
+  value       = google_pubsub_topic.main.name
+}
+
+output "main_topic_id" {
+  description = "Full ID of the main topic"
+  value       = google_pubsub_topic.main.id
+}
+
+output "main_subscription_name" {
+  description = "Name of the main subscription"
+  value       = google_pubsub_subscription.main.name
+}
+
+output "main_subscription_id" {
+  description = "Full ID of the main subscription"
+  value       = google_pubsub_subscription.main.id
+}
+
+output "dlq_topic_name" {
+  description = "Name of the dead-letter topic"
+  value       = google_pubsub_topic.dlq.name
+}
+
+output "dlq_subscription_name" {
+  description = "Name of the dead-letter subscription"
+  value       = google_pubsub_subscription.dlq.name
+}

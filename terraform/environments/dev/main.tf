@@ -166,3 +166,23 @@ module "cloud_sql" {
 
   labels = local.common_labels
 }
+
+# ----------------------------------------------------------------------
+# Pub/Sub
+# ----------------------------------------------------------------------
+
+module "pubsub" {
+  source = "../../modules/pubsub"
+
+  name_prefix  = local.name_prefix
+  project_id   = var.project_id
+  topic_name   = "openbi-events"
+  topic_suffix = var.resource_suffix
+
+  ack_deadline_seconds   = 60
+  message_retention_days = 7
+  max_delivery_attempts  = 5
+  dlq_retention_days     = 7
+
+  labels = local.common_labels
+}

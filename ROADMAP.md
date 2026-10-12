@@ -8,8 +8,8 @@ Sequential phases, each ending with a commit and a green CI run.
 - ✅ **G4 — GKE** (Standard regional cluster, primary + spot node pools, Workload Identity, private nodes)
 - ✅ **G5 — Cloud Storage** (raw / processed / models buckets, lifecycle, uniform access)
 - ✅ **G6 — Cloud SQL PostgreSQL** (private IP, IAM auth, backups, tuned flags)
-- 📋 **G7 — Pub/Sub** (topic + subscription + dead-letter topic) *(next)*
-- 📋 **G8 — Load Balancing** (GKE Ingress, managed certificate)
+- ✅ **G7 — Pub/Sub** (topic + subscription + dead-letter topic)
+- 📋 **G8 — Load Balancing** (GKE Ingress, managed certificate) *(next)*
 - 📋 **G9 — Cloud Logging + Monitoring + Secret Manager**
 - 📋 **G10 — Kubernetes manifests** (OpenBI workloads adapted for GKE)
 - 📋 **G11 — Deployment scripts + docs**

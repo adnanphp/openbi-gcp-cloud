@@ -93,3 +93,22 @@ output "cloud_sql_credentials_secret" {
   description = "Secret Manager secret ID holding the credentials"
   value       = module.cloud_sql.credentials_secret_id
 }
+
+# ----------------------------------------------------------------------
+# Pub/Sub outputs
+# ----------------------------------------------------------------------
+
+output "pubsub_main_topic" {
+  description = "Main Pub/Sub topic name"
+  value       = module.pubsub.main_topic_name
+}
+
+output "pubsub_main_subscription" {
+  description = "Main Pub/Sub subscription name"
+  value       = module.pubsub.main_subscription_name
+}
+
+output "pubsub_dlq_topic" {
+  description = "Dead-letter topic name"
+  value       = module.pubsub.dlq_topic_name
+}
