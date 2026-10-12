@@ -1,0 +1,6 @@
+# Copy to terraform.tfvars and fill in your GCP project ID.
+# The real terraform.tfvars is gitignored.
+
+project_id      = "your-gcp-project-id"
+region          = "europe-west3"
+resource_suffix = "your-gcp-project-id"
