@@ -9,9 +9,3 @@ variable "region" {
   type        = string
   default     = "europe-west3"
 }
-
-variable "resource_suffix" {
-  description = "Globally unique suffix for resource names that require it"
-  type        = string
-  default     = "REPLACE-WITH-PROJECT-ID"
-}
